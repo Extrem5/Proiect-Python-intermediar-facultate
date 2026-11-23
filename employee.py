@@ -1,3 +1,7 @@
+##employee.py
+## X=5 , Y=8 , Echipa E69
+
+
 class Employee:
     """Common base class for all employees"""
     empCount = 0
@@ -31,8 +35,8 @@ class Employee:
 ##    Deprecated - no longer relevant
 ##    Blocked - hit a roadblock, can no longer work on it
         
-##    def add_task(self, task_name):
-##        self.tasks[task_name] = "New"   # needs tasks defined before (in __init__)
+    def add_task(self, task_name):
+        self.tasks[task_name] = "New"   # needs tasks defined before (in __init__)
 ##
 ##    def update_tasks(self, task_name, status):
 ##        self.tasks[task_name] = status
@@ -47,4 +51,21 @@ class Employee:
                 print(name)
 
 
+class Manager(Employee):
+    """Manager class, inherits from Employee"""
+    mgr_count = 0
+    def __init__(self, name, salary, task, position, department):
+        super().__init__(name, salary)
+        self.position=position
+        self.department = department
+        Manager.mgr_count += 1
+        if task is not None:
+           self.tasks.update(task)
+    def display_employee(self):
+        print("Tasks : ", list(self.tasks.values())) ## X==5
 emp1=Employee("Alin","5000")
+manager1 = Manager("Mihai", "10000", {"Task1": "New"}, "Team Lead", "Echipa69_Cojocaru_Stoica")
+manager1.display_employee()
+emp1.display_employee()
+print("empCount pentru instanta Employee:", emp1.empCount)
+print("empCount pentru instanta Manager:", manager1.empCount)
